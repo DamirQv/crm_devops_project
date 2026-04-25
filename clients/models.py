@@ -1,13 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Client(models.Model):
-
     name = models.CharField(max_length=255)
-    phone = models.CharField(max_length=20)
     email = models.EmailField()
-    company = models.CharField(max_length=255)
+    phone = models.CharField(max_length=20)
+    company = models.CharField(max_length=255, blank=True)
 
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
