@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CRM Dashboard</title>
+    <style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f5f7fb;
+    animation: fadeIn 0.8s ease-in;
+}
+
+/* АНИМАЦИЯ СТРАНИЦЫ */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: linear-gradient(180deg, #1e293b, #0f172a);
+    color: white;
+    position: fixed;
+    padding: 20px;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: #cbd5f5;
+    margin: 10px 0;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+.main {
+    margin-left: 240px;
+    padding: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+/* КАРТОЧКИ С АНИМАЦИЕЙ */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    flex: 1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    animation: popUp 0.6s ease;
+}
+
+@keyframes popUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* ТАБЛИЦА */
+table {
+    width: 100%;
+    margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    animation: fadeIn 1s ease;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #f1f5f9;
+}
+
+/* HOVER СТРОК */
+tr:hover {
+    background: #f9fafb;
+    transition: 0.2s;
+}
+
+/* КРАСИВЫЕ ЧИСЛА */
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3b82f6;
+}
+
+/* ЗАГОЛОВКИ */
+h1 {
+    animation: fadeIn 1s ease;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>CRM System</h2>
+    <a href="#">Dashboard</a>
+    <a href="/clients/">Clients</a>
+    <a href="/admin/">Admin</a>
+</div>
+
+<div class="main">
+    <h1>Dashboard</h1>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Total Clients</h3>
+            <p>{{ total_clients }}</p>
+        </div>
+        <div class="card">
+            <h3>Deals</h3>
+            <p>8</p>
+        </div>
+        <div class="card">
+            <h3>Tasks</h3>
+            <p>16</p>
+        </div>
+    </div>
+
+    <h2>Recent Clients</h2>
+
+    <table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+    </tr>
+
+    {% for client in clients %}
+    <tr>
+        <td>{{ client.name }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.phone }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+</div>
+
+</body>
+</html>
